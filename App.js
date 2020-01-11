@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import NavBar from "./components/navbar";
-import Counters from "./components/counters";
-import PathfindingVisualizer from "./components/PathfindingVisualizer";
+import NavBar from "./src/components/navbar";
+import Counters from "./src/components/counters";
+import PathfindingVisualizer from "./src/components/PathfindingVisualizer";
 import "./App.css";
-import { dijkstra } from "./algorithms/dijkstra";
+import { dijkstra } from "./src/algorithms/dijkstra";
 
 class App extends Component {
   state = {
