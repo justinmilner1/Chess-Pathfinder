@@ -37,7 +37,7 @@ class Counter extends Component {
 
   formatCount() {
     const { value: count } = this.props.counter;
-    if (count === 5) return "5 (Max)";
+    if (count === 5) return "5 (Maxx)";
     return count === 0 ? "0 (Min)" : count;
   }
 }
