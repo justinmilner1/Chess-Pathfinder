@@ -11,6 +11,8 @@ class App extends Component {
       { id: 1, value: 0 },
       { id: 2, value: 0 }
     ],
+    wallDensity: 0,
+    walls: [],
     algoSpeed: 10,
     shortestPathSpeed: 20,
     algorithm: "Dijkstra",
@@ -33,7 +35,7 @@ class App extends Component {
     //updating counters
     const counters = [...this.state.counters];
     const index = counters.indexOf(counter);
-    if (counters[index].value == 5) return;
+    if (counters[index].value == 4) return;
     counters[index] = { ...counter };
     counters[index].value++;
     console.log(this.state.counters[0]);
@@ -41,10 +43,23 @@ class App extends Component {
 
     //updating speed
     if (counter.id == 2) {
+      const newSpeed = (this.state.algoSpeed -= 1);
       this.state.algoSpeed -= 1;
       this.state.shortestPathSpeed -= 2;
+      this.setState({ newSpeed });
+      return;
     }
-    //or updating density
+
+    //updating wall density
+    for (let i = 0; i < (this.state.wallDensity + 1) * 45; i++) {
+      //45 is number of walls to toggle
+      const row = Math.floor(Math.random() * 16);
+      const col = Math.floor(Math.random() * 40);
+      //dont allow row col to equal start or end node
+      const pos = [row, col];
+      this.state.walls.push(pos); //should be stored in 2d array
+      this.PathfindingVisualizer.getNewGridWithWallToggledBase(row, col);
+    }
   };
 
   handleDecrement = counter => {
@@ -58,6 +73,32 @@ class App extends Component {
     this.setState({ counters });
 
     //updating speed
+    if (counter.id == 2) {
+      const newSpeed = (this.state.algoSpeed += 1);
+      this.state.algoSpeed += 1;
+      this.state.shortestPathSpeed += 2;
+      this.setState({ newSpeed });
+      return;
+    }
+
+    //updating wall density
+    if (this.state.walls.length < 45) return;
+
+    for (let i = 0; i < 45; i++) {
+      //45 is number of walls to toggle
+      if (
+        typeof this.state.walls[this.state.walls.length - 1][0] ==
+          "undefined" ||
+        typeof this.state.walls[this.state.walls.length - 1][1] == "undefined"
+      ) {
+        return;
+      }
+
+      this.PathfindingVisualizer.getNewGridWithWallToggledBase(
+        index[0],
+        index[1]
+      );
+    }
   };
 
   handleReset = () => {
@@ -96,6 +137,8 @@ class App extends Component {
             />
           </main>
           <PathfindingVisualizer
+            onRef={ref => (this.PathfindingVisualizer = ref)}
+            onWallDensity={this.state.wallDensity}
             onAlgoSpeed={this.state.algoSpeed}
             onShortestPathSpeed={this.state.shortestPathSpeed}
             onAlgo={this.state.algorithm}

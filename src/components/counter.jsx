@@ -7,16 +7,16 @@ class Counter extends Component {
     return (
       <div>
         <span className={this.getBadgeClasses()}>{this.formatCount()}</span>
-        <a className="btn btn-primary btn-sm m-2">{this.getName()}</a>
+        <a class="btn btn-success btn-sm mr-2">{this.getName()}</a>
         <button
           onClick={() => onIncrement(counter)}
-          className="btn btn-secondary btn-sm"
+          class="btn btn-success btn-sm mr-2"
         >
           +
         </button>
         <button
           onClick={() => onDecrement(counter)}
-          className="btn btn-secondary btn-sm m-2"
+          class="btn btn-success btn-sm mr-2"
         >
           -
         </button>
@@ -30,14 +30,14 @@ class Counter extends Component {
   }
 
   getBadgeClasses() {
-    let classes = "badge m-2 badge-";
-    classes += this.props.counter === 0 ? "warning" : "primary";
+    let classes = "btn btn-success btn-sm mr-2";
+    //classes += this.props.counter === 0 ? "warning" : "primary";
     return classes;
   }
 
   formatCount() {
     const { value: count } = this.props.counter;
-    if (count === 5) return "5 (Max)";
+    if (count === 4) return "4 (Max)";
     return count === 0 ? "0 (Min)" : count;
   }
 }

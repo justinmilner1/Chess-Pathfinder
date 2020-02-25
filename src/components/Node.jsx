@@ -9,6 +9,8 @@ export default class Node extends Component {
       isFinish,
       isStart,
       isWall,
+      isBrown,
+      isWhite,
       onMouseDown,
       onMouseEnter,
       onMouseUp,
@@ -19,9 +21,12 @@ export default class Node extends Component {
       : isStart
       ? "node-start"
       : isWall
+      ? "node-brown"
+      : isBrown
+      ? "node-white"
+      : isWhite
       ? "node-wall"
       : "";
-
     return (
       <div
         id={`node-${row}-${col}`}

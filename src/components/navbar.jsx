@@ -10,16 +10,18 @@ class NavBar extends Component {
 
   render() {
     const { selectAlgorithm } = this.props; //think i can delete this
-    const dij = "dijkstra";
+    const dij = "dijkstra"; //and this?
     const menuClass = `dropdown-menu${this.state.isOpen ? " show" : ""}`;
     return (
       <nav className="navbar navbar-light bg-light">
-        <a className="navbar-brand">Chess Pathfinder </a>
+        <a color="green" className="navbar-brand">
+          Chess Pathfinder{" "}
+        </a>
 
         <div id="dijkstraButton">
           <button
             onClick={() => this.props.onAlgorithm("Dijkstra")}
-            className="btn btn-secondary"
+            className="btn btn-outline-success"
             type="button"
           >
             Dijkstra
@@ -29,7 +31,7 @@ class NavBar extends Component {
         <button
           id="a*Button"
           onClick={() => this.props.onAlgorithm("A*")}
-          className="btn btn-secondary"
+          className="btn btn-outline-success"
           type="button"
         >
           A*
@@ -37,7 +39,7 @@ class NavBar extends Component {
 
         <div className="dropdown" onClick={this.toggleOpen}>
           <button
-            className="btn btn-secondary dropdown-toggle"
+            className="btn btn-outline-success dropdown-toggle"
             type="button"
             id="dropdownMenuButton"
             data-toggle="dropdown"
