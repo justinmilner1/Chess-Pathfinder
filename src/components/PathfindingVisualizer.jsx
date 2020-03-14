@@ -72,7 +72,8 @@ export default class PathfindingVisualizer extends Component {
     const { grid } = this.state;
     const startNode = grid[START_NODE_ROW][START_NODE_COL];
     const finishNode = grid[FINISH_NODE_ROW][FINISH_NODE_COL];
-    const visitedNodesInOrder = AStar2(grid, startNode, finishNode); //AStar should return the order of Nodes which it visited
+    const piece = this.props.onPiece2;
+    const visitedNodesInOrder = AStar2(grid, startNode, finishNode, piece); //AStar should return the order of Nodes which it visited
     const nodesInShortestPathOrder = getNodesInShortestPathOrder(finishNode);
     this.animateDijkstra(visitedNodesInOrder, nodesInShortestPathOrder);
   }
@@ -81,7 +82,8 @@ export default class PathfindingVisualizer extends Component {
     const { grid } = this.state;
     const startNode = grid[START_NODE_ROW][START_NODE_COL];
     const finishNode = grid[FINISH_NODE_ROW][FINISH_NODE_COL];
-    const visitedNodesInOrder = dijkstra(grid, startNode, finishNode);
+    const piece = this.props.onPiece2;
+    const visitedNodesInOrder = dijkstra(grid, startNode, finishNode, piece);
     const nodesInShortestPathOrder = getNodesInShortestPathOrder(finishNode);
     this.animateDijkstra(visitedNodesInOrder, nodesInShortestPathOrder);
   }
@@ -100,9 +102,10 @@ export default class PathfindingVisualizer extends Component {
       console.log("visualizing dijkstra");
       this.visualizeDijkstra();
       return;
+    } else {
+      console.log("visualizing a*");
+      this.visualizeAStar();
     }
-    console.log("visualizing a*");
-    this.visualizeAStar();
   }
 
   render() {

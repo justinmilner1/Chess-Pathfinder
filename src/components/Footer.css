@@ -1,0 +1,13 @@
+.next > * {
+  display: inline-block;
+  padding: 1em;
+}
+
+.head > * {
+  color: blue;
+  padding: 1em;
+}
+
+.wrapper > * {
+  text-align: center;
+}

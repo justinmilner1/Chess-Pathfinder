@@ -66,6 +66,12 @@ class NavBar extends Component {
             >
               Queen
             </a>
+            <a
+              className="dropdown-item"
+              onClick={() => this.props.onPiece("Horse")}
+            >
+              Horse
+            </a>
           </div>
         </div>
       </nav>
@@ -74,12 +80,3 @@ class NavBar extends Component {
 }
 
 export default NavBar;
-
-{
-  /* <nav className="navbar navbar-light bg-light">
-  <a className="navbar-brand" href="#">
-    Chess Pathfinder{" "}
-    <span className="badge badge-pill badge-secondary">{totalCounters}</span>
-  </a>
-</nav>; */
-}

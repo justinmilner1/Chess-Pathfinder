@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import NavBar from "./components/navbar";
 import Counters from "./components/counters";
 import PathfindingVisualizer from "./components/PathfindingVisualizer";
+import Footer from "./components/Footer";
 import "./App.css";
 import { dijkstra } from "./algorithms/dijkstra";
 
@@ -58,7 +59,12 @@ class App extends Component {
       //dont allow row col to equal start or end node
       const pos = [row, col];
       this.state.walls.push(pos); //should be stored in 2d array
-      this.PathfindingVisualizer.getNewGridWithWallToggledBase(row, col);
+      if ((row == 8 && col == 8) || (row == 8 && col == 32))
+        console.log("do nothing");
+      //start and finish
+      else {
+        this.PathfindingVisualizer.getNewGridWithWallToggledBase(row, col);
+      }
     }
   };
 
@@ -102,6 +108,7 @@ class App extends Component {
   };
 
   handleReset = () => {
+    console.log("reset called");
     const counters = this.state.counters.map(c => {
       c.value = 0;
       return c;
@@ -145,6 +152,7 @@ class App extends Component {
             onPiece2={this.state.piece}
           ></PathfindingVisualizer>
         </div>
+        <Footer />
       </React.Fragment>
     );
   }

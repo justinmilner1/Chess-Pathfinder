@@ -13,6 +13,7 @@ class Counters extends Component {
 
     return (
       <div>
+        <div class="instructions"> </div>
         <button onClick={onReset} className="btn btn-success btn-sm m-2">
           Reset
         </button>
